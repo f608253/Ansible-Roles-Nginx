@@ -1,0 +1,8 @@
+---
+#Configure index.html for nginx package and send to client machine
+- name: index.html file copy
+  copy: src=index.html dest=/usr/share/nginx/html/index.html 
+  register: html
+  ignore_errors: True
+  notify:
+  - start nginx

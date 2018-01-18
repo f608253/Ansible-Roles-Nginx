@@ -1,0 +1,11 @@
+---
+- name: Installing nginx repo through yum
+  yum: name=http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+- name: install nginx package
+  yum: 
+    name: nginx
+    state: latest
+- name: Reomve the default port to 81 for nginx
+  command: "sed -i 's/80/81/g' /etc/nginx/conf.d/default.conf"
+  notify:
+  - start nginx
